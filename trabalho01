@@ -1,0 +1,87 @@
+class ProductManager {
+  constructor() {
+    this.products = [];
+  }
+
+  get title() {
+    return this._title;
+  }
+
+  set title(title) {
+    this._title = title;
+  }
+
+  get description() {
+    return this._description;
+  }
+
+  set description(description) {
+    this._description = description;
+  }
+
+  get price() {
+    return this._price;
+  }
+
+  set price(price) {
+    this._price = price;
+  }
+
+  get thumbnail() {
+    return this._thumbnail;
+  }
+
+  set thumbnail(thumbnail) {
+    this._thumbnail = thumbnail;
+  }
+
+  get code() {
+    return this._code;
+  }
+
+  set code(code) {
+    this._code = code;
+  }
+
+  get stock() {
+    return this._stock;
+  }
+
+  set stock(stock) {
+    this._stock = stock;
+  }
+
+  addProduct(product) {
+    this.products.push(product);
+  }
+
+  removeProduct(product) {
+    this.products.splice(this.products.indexOf(product), 1);
+  }
+
+  getAllProducts() {
+    return this.products;
+  }
+}
+class ProductManager {
+  constructor() {
+    this.products = [];
+  }
+
+  getProductById(id: number) {
+    return this.products.find((product) => product.id === id);
+  }
+
+  addProduct(product: Product) {
+    if (this.products.find((p) => p.code === product.code)) {
+      throw new Error("Código já existe");
+    }
+
+    if (!product.title || !product.description || !product.price || !product.thumbnail || !product.code || !product.stock) {
+      throw new Error("Todos os campos são obrigatórios");
+    }
+
+    product.id = this.products.length + 1;
+    this.products.push(product);
+  }
+}
